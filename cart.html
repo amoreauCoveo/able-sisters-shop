@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Cart</title>
+    <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
+    <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
+    <script>
+      function getSkuIds() {
+        const itemIds = [];
+        let cart = localStorage.getItem("cart");
+        if (cart == null) {
+          cart = []
+        } else {
+          cart = JSON.parse(cart);
+        }
+        cart.forEach(item => {
+          itemIds.push(item.sku);
+        })
+        return itemIds;
+      }
+        document.addEventListener("DOMContentLoaded", () => {
+            const searchboxroot = document.querySelector("#searchbox");
+            const itemIds = JSON.stringify(getSkuIds());
+            // ["vnnlfaflrpv9vresq", "CmME8czfwb5XrQKhi"]
+            Coveo.SearchEndpoint.configureCloudV2Endpoint(
+                "amoreautests2frw2xc0",
+                "xxa4407c2a-e7f9-44c6-998c-7d657c4398ba",
+                "https://platform.cloud.coveo.com/rest/search",
+                {
+                  "queryStringArguments": {
+                    "mlParameters": '{"itemIds": '+ itemIds + '}',
+                    "recommendation": "CartRecommender"
+                  }
+                }
+            );
+            Coveo.initSearchbox(searchboxroot, "./search.html");
+            const recroot = document.querySelector("#recommendations");
+            Coveo.init(recroot);
+            Coveo.$$(recroot).on("doneBuildingQuery", function (e, args) {
+              console.log(args);
+              //args.queryBuilder.recommendations = "CartRecommender"
+            })
+            const cartdisplay = document.querySelector("#cartlisting");
+            let cart = localStorage.getItem("cart");
+            if (cart == null) {
+                cart = [];
+            } else {
+                cart = JSON.parse(cart);
+            }
+            cart.forEach(item => {
+                let itemDisplayContainer = document.createElement('div');
+                itemDisplayContainer.classList.add("itemDisplayContainer")
+                let itemDisplayTitle = document.createElement('div');
+                itemDisplayTitle.classList.add("itemDisplayTitle");
+                itemDisplayTitle.innerHTML = item.name;
+                let itemDisplayImage = document.createElement('img');
+                itemDisplayImage.src = item.image;
+                let itemDisplayPrice = document.createElement('div');
+                itemDisplayPrice.classList.add("itemDisplayPrice");
+                itemDisplayPrice.innerHTML = item.price + " bells"
+                itemDisplayContainer.appendChild(itemDisplayTitle);
+                itemDisplayContainer.appendChild(itemDisplayImage);
+                itemDisplayContainer.appendChild(itemDisplayPrice);
+                cartdisplay.appendChild(itemDisplayContainer);
+            })
+        });
+    </script>
+    <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10095/css/CoveoFullSearch.min.css" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <script src="./src/scripts.js"></script>
+    <script>
+        (function(c,o,v,e,O,u,a){
+        a='coveoua';c[a]=c[a]||function(){(c[a].q=c[a].q|| []).push(arguments)};
+        c[a].t=Date.now();u=o.createElement(v);u.async=1;u.src=e;
+        O=o.getElementsByTagName(v)[0];O.parentNode.insertBefore(u,O)
+        })(window,document,'script','https://static.cloud.coveo.com/coveo.analytics.js/2/coveoua.js')
+        coveoua('set', 'currencyCode', "Bell");
+        // When using an API key instead of a search token, add the following lines of code
+        /*
+        if (typeof "<USER_ID>" !== 'undefined') {
+          coveoua('set', 'userId', "<USER_ID>");
+        }
+        */
+        // end
+        coveoua('init', "xxe96351e4-1aac-40f8-b59e-43ea4545936d", "https://analytics.cloud.coveo.com/rest/ua");
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="header-title">
+                Able Sisters Shop
+            </div>
+        <div class="cart">
+            <a href="./cart.html">Cart</a>
+        </div>
+    </div>
+        <div id="searchbox">
+            <div class="CoveoSearchbox"></div>
+            <div class="CoveoAnalytics" data-search-hub="ablesisters"></div>
+        </div>
+    </header>
+    <h1>Cart</h1>
+    <div id="cartlisting">
+    </div>
+    <button class="buy-from-cart-button" onclick="buyfromcart()">Buy</button>
+    <div id="recommendations" class="CoveoRecommendations" data-pipeline="AbleSistersCartRec">
+        <div class="coveo-recommendation-body">
+            <div class="CoveoResultList" data-layout="card" data-auto-select-fields-to-include="true">
+                <script id="Default" class="result-template" type="text/html" data-layout="card">
+                    <div class="coveo-result-frame">
+                      <div class="coveo-result-cell">
+                        <div class="coveo-result-row">
+                          <span class="CoveoResultLink">
+                            <span class="CoveoFieldValue" data-field="@thumbnailurl" data-helper="image" data-html-value="true" data-helper-options-width="200"></span>
+                          </span>
+                        </div>
+                        <div class="coveo-result-row">
+                          <a class="CoveoResultLink"></a>
+                        </div>
+                        <div class="coveo-result-row">
+                          <span class="CoveoFieldValue" data-field="@ec_price"></span> Bells
+                        </div>
+                        <div class="coveo-result-row">
+                          <div class="coveo-result-cell">
+                            <span class="CoveoResultFolding" data-result-template-id="relatedproducts"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </script>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

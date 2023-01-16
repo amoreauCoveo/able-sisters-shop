@@ -1,0 +1,154 @@
+<!doctype html>
+
+    <html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+    
+        <title>Tank</title>
+        <meta name="description" content="Tank">
+        <meta name="sku" content="tank">
+        <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
+        <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const root = document.querySelector('#relatedproducts');
+            const searchboxroot = document.querySelector("#searchbox");
+            const recRoot = document.querySelector('#recommendations');
+            Coveo.SearchEndpoint.configureCloudV2Endpoint(
+                "amoreautests2frw2xc0",
+                "xxa4407c2a-e7f9-44c6-998c-7d657c4398ba",
+                "https://platform.cloud.coveo.com/rest/search",
+                {
+                  "queryStringArguments": {
+                    "mlParameters": '{"itemId": "E6L6EfiJZiJNgcNQH"}',
+                    "recommendation": "FrequentlyViewed",
+                    "numberOfResults": 5
+                  }
+                }
+            );
+            Coveo.init(root);
+            Coveo.init(recRoot);
+            Coveo.initSearchbox(searchboxroot, "../search.html");
+            
+            Coveo.$$(root).on("doneBuildingQuery", function (e, args) {
+                args.queryBuilder.advancedExpression.add("@ec_item_group_id==\"tank\" NOT @uniqueid=E6L6EfiJZiJNgcNQH")
+            })
+
+            document.querySelector("#addToCartButton").addEventListener("click", function (){
+                const itemtoaddtocart = {"sku": "E6L6EfiJZiJNgcNQH", "price": 350.0, "name": "Tank", "category": "Tops", "image": "https://acnhcdn.com/latest/ClosetIcon/TopsTexTopTshirtsNTanktop3.png"};
+                addtocart(itemtoaddtocart);
+            })
+        });
+    </script>
+        <link rel="stylesheet" href="../src/style.css" />
+        <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10095/css/CoveoFullSearch.min.css" />
+        <script src="../src/scripts.js"></script>
+        <script>
+            (function(c,o,v,e,O,u,a){
+            a='coveoua';c[a]=c[a]||function(){(c[a].q=c[a].q|| []).push(arguments)};
+            c[a].t=Date.now();u=o.createElement(v);u.async=1;u.src=e;
+            O=o.getElementsByTagName(v)[0];O.parentNode.insertBefore(u,O)
+            })(window,document,'script','https://static.cloud.coveo.com/coveo.analytics.js/2/coveoua.js')
+            coveoua('set', 'currencyCode', "Bell");
+            // When using an API key instead of a search token, add the following lines of code
+            /*
+            if (typeof "<USER_ID>" !== 'undefined') {
+              coveoua('set', 'userId', "<USER_ID>");
+            }
+            */
+            // end
+            coveoua('init', "xxe96351e4-1aac-40f8-b59e-43ea4545936d", "https://analytics.cloud.coveo.com/rest/ua");
+            coveoua('ec:addProduct', {
+                'id':"E6L6EfiJZiJNgcNQH",
+                'name': "Tank",
+                'category': "Tops",
+                'price': 350.0,
+                'position': 1
+            })
+            coveoua('ec:setAction', 'detail');
+            coveoua('send', 'event')
+            </script>
+    </head>
+    <body>
+    <header>
+        <div class="header">
+            <div class="header-title">
+                Able Sisters Shop
+            </div>
+        <div class="cart">
+            <a href="../cart.html">Cart</a>
+        </div>
+    </div>
+        <div id="searchbox">
+            <div class="CoveoSearchbox"></div>
+            <div class="CoveoAnalytics" data-search-hub="ablesisters"></div>
+        </div>
+    </header>
+        <h1>Tank</h1>
+        <img src="https://acnhcdn.com/latest/ClosetIcon/TopsTexTopTshirtsNTanktop3.png"/>
+    <div>
+        <span>Also available in:</span>
+        <div class="alternate-colors">
+            <div class="CoveoSearchInterface" id="relatedproducts">
+                <div class="CoveoAnalytics" data-search-hub="AbleSisters Individual Listing"></div>
+                <div class="CoveoResultList" data-layout="card" data-wait-animation="fade" data-auto-select-fields-to-include="true">
+                    <script id="relatedproducts" class="result-template" type="text/html" data-layout="card">
+                        <a class="CoveoResultLink">
+                            <div>
+                                <span class="CoveoFieldValue" data-field="@thumbnailurl" data-helper="image" data-html-value="true" data-helper-options-width="100"></span>
+                            </div>
+                            <div class="CoveoFieldValue" data-field="@cat_color"></div>
+                        </a>
+                      </script>
+                </div>
+            </div>
+        </div>
+    </div>
+        <table>
+            <tr>
+                <td>Price</td>
+                <td>350.0 Bells</td>
+            </tr>
+            <tr>
+                <td>Style</td>
+                <td>Simple</td>
+            </tr>
+            <tr>
+                <td>Themes</td>
+                <td>Everyday,Outdoorsy,Comfy,Sporty,Vacation</td>
+            </tr>
+        </table>
+        <button class="add-to-cart-button" id="addToCartButton">Add to cart</button>
+        <div>People also viewed:</div>
+        <div id="recommendations" class="CoveoRecommendations" data-pipeline="AbleSistersCartRec">
+            <div class="coveo-recommendation-body">
+                <div class="CoveoResultList" data-layout="card" data-auto-select-fields-to-include="true">
+                    <script id="Default" class="result-template" type="text/html" data-layout="card">
+                        <div class="coveo-result-frame">
+                            <div class="coveo-result-cell">
+                                <div class="coveo-result-row">
+                                    <span class="CoveoResultLink">
+                                        <span class="CoveoFieldValue" data-field="@thumbnailurl" data-helper="image" data-html-value="true" data-helper-options-width="200"></span>
+                                    </span>
+                                </div>
+                                <div class="coveo-result-row">
+                                  <a class="CoveoResultLink"></a>
+                                </div>
+                                <div class="coveo-result-row">
+                                  <span class="CoveoFieldValue" data-field="@ec_price"></span> Bells
+                                </div>
+                                <div class="coveo-result-row">
+                                  <div class="coveo-result-cell">
+                                    <span class="CoveoResultFolding" data-result-template-id="relatedproducts"></span>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+    </html>

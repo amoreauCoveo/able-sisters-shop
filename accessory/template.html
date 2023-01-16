@@ -1,0 +1,210 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Product Name</title>
+    <meta name="description" content="Product Name">
+    <meta name="sku" content="SKU">
+    <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
+    <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const root = document.querySelector('#relatedproducts');
+            const searchboxroot = document.querySelector("#searchbox");
+            Coveo.SearchEndpoint.configureCloudV2Endpoint(
+                "amoreautests2frw2xc0",
+                "xxa4407c2a-e7f9-44c6-998c-7d657c4398ba",
+                "https://platform.cloud.coveo.com/rest/search"
+            );
+            Coveo.init(root);
+            Coveo.initSearchbox(searchboxroot, "../search.html");
+
+            Coveo.$$(root).on("doneBuildingQuery", function (e, args) {
+                args.queryBuilder.advancedExpression.add('@ec_item_group_id=="${accessory.ec_item_group_id}" NOT @uniqueid=${accessory.uniqueid}')
+            })
+        });
+    </script>
+    <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10095/css/CoveoFullSearch.min.css" />
+    <link rel="stylesheet" href="../src/style.css" />
+    <script src="../src/scripts.js"></script>
+    <script>
+        (function(c,o,v,e,O,u,a){
+        a='coveoua';c[a]=c[a]||function(){(c[a].q=c[a].q|| []).push(arguments)};
+        c[a].t=Date.now();u=o.createElement(v);u.async=1;u.src=e;
+        O=o.getElementsByTagName(v)[0];O.parentNode.insertBefore(u,O)
+        })(window,document,'script','https://static.cloud.coveo.com/coveo.analytics.js/2/coveoua.js')
+        coveoua('set', 'currencyCode', "Bell");
+        // When using an API key instead of a search token, add the following lines of code
+        /*
+        if (typeof "<USER_ID>" !== 'undefined') {
+          coveoua('set', 'userId', "<USER_ID>");
+        }
+        */
+        // end
+        coveoua('init', "xxe96351e4-1aac-40f8-b59e-43ea4545936d", "https://analytics.cloud.coveo.com/rest/ua");
+        coveoua('send', 'pageview');
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="header-title">
+                Able Sisters Shop
+            </div>
+        <div class="cart">
+            <a href="../cart.html">Cart</a>
+        </div>
+    </div>
+        <div id="searchbox">
+            <div class="CoveoSearchbox"></div>
+            <div class="CoveoAnalytics" data-search-hub="ablesisters"></div>
+        </div>
+    </header>
+    <h1>Product Name</h1>
+    <img src="imageurl"/>
+    <div>
+        <span>Also available in:</span>
+        <div class="alternate-colors">
+            <div class="CoveoSearchInterface" id="relatedproducts" data-pipeline="Able Sisters">
+                <div class="CoveoAnalytics" data-search-hub="AbleSisters Listing"></div>
+                <div class="CoveoResultList" data-layout="card" data-wait-animation="fade" data-auto-select-fields-to-include="true">
+                    <script id="relatedproducts" class="result-template" type="text/html" data-layout="card">
+                        <a class="CoveoResultLink">
+                            <div>
+                                <span class="CoveoFieldValue" data-field="@thumbnailurl" data-helper="image" data-html-value="true" data-helper-options-width="100"></span>
+                            </div>
+                            <div class="CoveoFieldValue" data-field="@cat_color"></div>
+                        </a>
+                      </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <td>Price</td>
+            <td>Bells</td>
+        </tr>
+        <tr>
+            <td>Style</td>
+            <td>The Style</td>
+        </tr>
+        <tr>
+            <td>Themes</td>
+            <td>The themes</td>
+        </tr>
+    </table>
+    <button class="add-to-cart-button" onclick="addtocart('mysku')">Add to cart</button>
+</body>
+
+</html>
+
+<!--
+<!doctype html>
+
+    <html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+    
+        <title>${object.title}</title>
+        <meta name="description" content="${object.title}">
+        <meta name="sku" content="${object.ec_productid}">
+        <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
+        <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const root = document.querySelector('#relatedproducts');
+            const searchboxroot = document.querySelector("#searchbox");
+            Coveo.SearchEndpoint.configureCloudV2Endpoint(
+                "amoreautests2frw2xc0",
+                "xxa4407c2a-e7f9-44c6-998c-7d657c4398ba",
+                "https://platform.cloud.coveo.com/rest/search"
+            );
+            Coveo.init(root);
+            Coveo.initSearchbox(searchboxroot, "../search.html");
+            
+            Coveo.$$(root).on("doneBuildingQuery", function (e, args) {
+                args.queryBuilder.advancedExpression.add('@ec_item_group_id=="${object.ec_item_group_id}" NOT @uniqueid=${object.uniqueid}')
+            })
+        });
+    </script>
+        <link rel="stylesheet" href="../src/style.css" />
+        <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10095/css/CoveoFullSearch.min.css" />
+        <script src="../src/scripts.js"></script>
+        <script>
+            (function(c,o,v,e,O,u,a){
+            a='coveoua';c[a]=c[a]||function(){(c[a].q=c[a].q|| []).push(arguments)};
+            c[a].t=Date.now();u=o.createElement(v);u.async=1;u.src=e;
+            O=o.getElementsByTagName(v)[0];O.parentNode.insertBefore(u,O)
+            })(window,document,'script','https://static.cloud.coveo.com/coveo.analytics.js/2/coveoua.js')
+            coveoua('set', 'currencyCode', "Bell");
+            // When using an API key instead of a search token, add the following lines of code
+            /*
+            if (typeof "<USER_ID>" !== 'undefined') {
+              coveoua('set', 'userId', "<USER_ID>");
+            }
+            */
+            // end
+            coveoua('init', "xxe96351e4-1aac-40f8-b59e-43ea4545936d", "https://analytics.cloud.coveo.com/rest/ua");
+            </script>
+    </head>
+    <body>
+    <header>
+        <div class="header">
+            <div class="header-title">
+                Able Sisters Shop
+            </div>
+        <div class="cart">
+            <a href="../cart.html">Cart</a>
+        </div>
+    </div>
+        <div id="searchbox">
+            <div class="CoveoSearchbox"></div>
+            <div class="CoveoAnalytics" data-search-hub="ablesisters"></div>
+        </div>
+    </header>
+        <h1>${object.title}</h1>
+        <img src="${object.thumbnailurl}"/>
+    <div>
+        <span>Also available in:</span>
+        <div class="alternate-colors">
+            <div class="CoveoSearchInterface" id="relatedproducts">
+                <div class="CoveoAnalytics" data-search-hub="AbleSisters Individual Listing"></div>
+                <div class="CoveoResultList" data-layout="card" data-wait-animation="fade" data-auto-select-fields-to-include="true">
+                    <script id="relatedproducts" class="result-template" type="text/html" data-layout="card">
+                        <a class="CoveoResultLink">
+                            <div>
+                                <span class="CoveoFieldValue" data-field="@thumbnailurl" data-helper="image" data-html-value="true" data-helper-options-width="100"></span>
+                            </div>
+                            <div class="CoveoFieldValue" data-field="@cat_color"></div>
+                        </a>
+                      </script>
+                </div>
+            </div>
+        </div>
+    </div>
+        <table>
+            <tr>
+                <td>Price</td>
+                <td>${object.ec_price} Bells</td>
+            </tr>
+            <tr>
+                <td>Style</td>
+                <td>${object.ec_style}</td>
+            </tr>
+            <tr>
+                <td>Themes</td>
+                <td>${themes}</td>
+            </tr>
+        </table>
+        <button class="add-to-cart-button" onclick='addtocart("${object.uniqueid}", {"sku": "${object.uniqueid}", "price": ${object.ec_price}, "name": "${object.title}", "category": "${object.ec_category}"})'>Add to cart</button>
+    </body>
+    
+    </html>
+
+
+-->
