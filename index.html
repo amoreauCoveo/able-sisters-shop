@@ -1,0 +1,64 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Search</title>
+    <meta name="description" content="Able Sisters Search Page">
+    <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
+    <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const searchboxroot = document.querySelector("#searchbox");
+            Coveo.SearchEndpoint.configureCloudV2Endpoint(
+                "amoreautests2frw2xc0",
+                "xxa4407c2a-e7f9-44c6-998c-7d657c4398ba",
+                "https://platform.cloud.coveo.com/rest/search"
+            );
+            Coveo.initSearchbox(searchboxroot, "./search.html");
+        })
+    </script>
+    <style>
+    .coveo-normal-child-result {
+        padding: 10px;
+    }
+    </style>
+    <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10095/css/CoveoFullSearch.min.css" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <script>
+        (function(c,o,v,e,O,u,a){
+        a='coveoua';c[a]=c[a]||function(){(c[a].q=c[a].q|| []).push(arguments)};
+        c[a].t=Date.now();u=o.createElement(v);u.async=1;u.src=e;
+        O=o.getElementsByTagName(v)[0];O.parentNode.insertBefore(u,O)
+        })(window,document,'script','https://static.cloud.coveo.com/coveo.analytics.js/2/coveoua.js')
+        coveoua('set', 'currencyCode', "Bell");
+        // When using an API key instead of a search token, add the following lines of code
+        /*
+        if (typeof "<USER_ID>" !== 'undefined') {
+          coveoua('set', 'userId', "<USER_ID>");
+        }
+        */
+        // end
+        coveoua('init', "xxa4407c2a-e7f9-44c6-998c-7d657c4398ba", "https://analytics.cloud.coveo.com/rest/ua");
+        </script>
+</head>
+
+<body>
+    <header>
+      <div class="header">
+          <div class="header-title">
+              Able Sisters Shop
+          </div>
+      <div class="cart">
+          <a href="./cart.html">Cart</a>
+      </div>
+  </div>
+      <div id="searchbox">
+          <div class="CoveoSearchbox"></div>
+          <div class="CoveoAnalytics" data-search-hub="ablesisters"></div>
+      </div>
+  </header>
+</body>
+</html>

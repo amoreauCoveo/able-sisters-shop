@@ -1,2 +1,3 @@
 # able-sisters-shop
-Used for commerce investigation
+
+This repository is used to test the various Commerce capabilities of Coveo.
