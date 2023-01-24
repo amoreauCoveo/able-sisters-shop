@@ -9,6 +9,17 @@
     <meta name="description" content="Able Sisters Search Page">
     <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
     <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
+    <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", async () => {
+          await window["uv"].emit('ecView', {
+              type: 'home',
+              language: 'en-us',
+              country: 'Canada',
+              currency: 'CAD'
+          })
+      })
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const searchboxroot = document.querySelector("#searchbox");
