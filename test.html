@@ -1,0 +1,31 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <script src="https://static.goqubit.com/smartserve-6051.js" async defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          setTimeout(function () {
+            console.log("Page loaded");
+            window["uv"].emit('ecView', {
+            type: 'cart',
+            subtypes: [
+              'Cart'
+            ],
+            language: 'en-us',
+            country: 'Ca',
+            currency: 'CAD'
+          })
+        }, 3000)
+          })
+      </script>
+</head>
+<body>
+    <div>
+        <h1>Hello</h1>
+    </div>
+</body>
+</html>
