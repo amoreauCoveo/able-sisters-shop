@@ -10,7 +10,41 @@
         <meta name="sku" content="happitee">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['top', 'Party;Theatrical;Work', 'Gray', 'White'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'happitee',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Happi Tee',
+                        categories: ['top'],
+                        price: {
+                            value: 960.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 960.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/top/happitee-Gpn5EJQx3YwaDh3dr.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopYshirtsHHappi2.png'],
+                        color: 'Gray',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

@@ -10,7 +10,41 @@
         <meta name="sku" content="paperbag">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['helmets', 'Goth', 'Beige', 'Beige'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'paperbag',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Paper Bag',
+                        categories: ['helmets'],
+                        price: {
+                            value: 140.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 140.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/helmets/paperbag-Z8NpXTFEZNuwzJb7B.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/CapFullfacePaperbagBeige.png'],
+                        color: 'Beige',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

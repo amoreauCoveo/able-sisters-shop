@@ -10,7 +10,41 @@
         <meta name="sku" content="bandage">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['accessory', 'Outdoorsy;Comfy;Sporty', 'Beige', 'White'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'bandage',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Bandage',
+                        categories: ['accessory'],
+                        price: {
+                            value: 140.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 140.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/accessory/bandage-2qFT5iPkk8bREvpkj.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/AccessoryMouthBandageSkin.png'],
+                        color: 'Beige',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

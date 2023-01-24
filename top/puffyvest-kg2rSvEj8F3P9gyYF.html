@@ -10,7 +10,41 @@
         <meta name="sku" content="puffyvest">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['top', 'Everyday;Outdoorsy', 'Red', 'White'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'puffyvest',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Puffy Vest',
+                        categories: ['top'],
+                        price: {
+                            value: 1250.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 1250.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/top/puffyvest-kg2rSvEj8F3P9gyYF.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopOuterLDownvest4.png'],
+                        color: 'Red',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

@@ -10,7 +10,41 @@
         <meta name="sku" content="shortsleevedressshirt">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['top', 'Everyday;Formal;Work', 'Blue', 'Blue'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'shortsleevedressshirt',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Short-Sleeve Dress Shirt',
+                        categories: ['top'],
+                        price: {
+                            value: 560.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 560.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/top/shortsleevedressshirt-DRra69aYwtZ4N3LDE.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopYshirtsHStandard4.png'],
+                        color: 'Blue',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

@@ -10,7 +10,41 @@
         <meta name="sku" content="handlebarmustache">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['accessory', 'Fairy tale;Formal;Theatrical', 'Colorful', 'Colorful'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'handlebarmustache',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Handlebar Mustache',
+                        categories: ['accessory'],
+                        price: {
+                            value: 1120.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 1120.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/accessory/handlebarmustache-HJfvmuhPDFMN8eRB2.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/AccessoryMouthBeardBlack.png'],
+                        color: 'Colorful',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

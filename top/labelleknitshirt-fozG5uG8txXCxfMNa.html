@@ -10,7 +10,41 @@
         <meta name="sku" content="labelleknitshirt">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['top', 'Party;Comfy;Theatrical', 'Yellow', 'Yellow'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'labelleknitshirt',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Labelle Knit Shirt',
+                        categories: ['top'],
+                        price: {
+                            value: 2270.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 2270.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/top/labelleknitshirt-fozG5uG8txXCxfMNa.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopTshirtsHKate4.png'],
+                        color: 'Yellow',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

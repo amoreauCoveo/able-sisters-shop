@@ -10,7 +10,41 @@
         <meta name="sku" content="giantribbon">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['hats', 'Fairy tale;Party;Theatrical', 'Black', 'Black'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'giantribbon',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Giant Ribbon',
+                        categories: ['hats'],
+                        price: {
+                            value: 1470.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 1470.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/hats/giantribbon-zCcR8JcuDcusf8GdX.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/CapOrnamentTRibbon7.png'],
+                        color: 'Black',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

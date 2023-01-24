@@ -10,7 +10,41 @@
         <meta name="sku" content="pilotshades">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['accessory', 'Sporty;Work', 'Yellow', 'Black'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'pilotshades',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Pilot Shades',
+                        categories: ['accessory'],
+                        price: {
+                            value: 1300.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 1300.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/accessory/pilotshades-nBHTPo8pt7eRL47PT.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/AccessoryGlassPilot1.png'],
+                        color: 'Yellow',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

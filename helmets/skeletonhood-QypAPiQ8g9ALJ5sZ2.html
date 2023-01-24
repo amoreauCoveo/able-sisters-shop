@@ -10,7 +10,41 @@
         <meta name="sku" content="skeletonhood">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['helmets', 'Fairy tale;Goth;Theatrical', 'Gray', 'Gray'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'skeletonhood',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Skeleton Hood',
+                        categories: ['helmets'],
+                        price: {
+                            value: 1400.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 1400.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/helmets/skeletonhood-QypAPiQ8g9ALJ5sZ2.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/CapCostumeSkullWhite.png'],
+                        color: 'Gray',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

@@ -10,7 +10,41 @@
         <meta name="sku" content="doctor'scoat">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['top', 'Work', 'White', 'Red'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'doctor'scoat',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Doctor's Coat',
+                        categories: ['top'],
+                        price: {
+                            value: 2160.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 2160.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/top/doctor'scoat-HRqmqmYxu9Lqva6ga.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopCoatLWhitecoat0.png'],
+                        color: 'White',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

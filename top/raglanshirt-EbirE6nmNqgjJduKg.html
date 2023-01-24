@@ -10,7 +10,41 @@
         <meta name="sku" content="raglanshirt">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['top', 'Everyday;Comfy', 'Green', 'White'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'raglanshirt',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Raglan Shirt',
+                        categories: ['top'],
+                        price: {
+                            value: 800.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 800.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/top/raglanshirt-EbirE6nmNqgjJduKg.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopTshirtsLRaglan1.png'],
+                        color: 'Green',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

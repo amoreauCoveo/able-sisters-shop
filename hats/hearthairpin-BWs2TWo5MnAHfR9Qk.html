@@ -10,7 +10,41 @@
         <meta name="sku" content="hearthairpin">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['hats', 'Everyday;Fairy tale', 'Blue', 'Yellow'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'hearthairpin',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Heart Hairpin',
+                        categories: ['hats'],
+                        price: {
+                            value: 700.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 700.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/hats/hearthairpin-BWs2TWo5MnAHfR9Qk.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/CapOrnamentLHearthairpin3.png'],
+                        color: 'Blue',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

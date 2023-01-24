@@ -10,7 +10,41 @@
         <meta name="sku" content="samuraishirt">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['top', 'Theatrical;Work', 'Blue', 'Orange'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'samuraishirt',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Samurai Shirt',
+                        categories: ['top'],
+                        price: {
+                            value: 6720.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 6720.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/top/samuraishirt-4tLfP9krCiioHYTXe.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopCoatLSamurai2.png'],
+                        color: 'Blue',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

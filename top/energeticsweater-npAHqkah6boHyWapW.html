@@ -10,7 +10,41 @@
         <meta name="sku" content="energeticsweater">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['top', 'Everyday;Comfy', 'Pink', 'Yellow'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'energeticsweater',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Energetic Sweater',
+                        categories: ['top'],
+                        price: {
+                            value: 960.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 960.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/top/energeticsweater-npAHqkah6boHyWapW.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopYshirtsLKids3.png'],
+                        color: 'Pink',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

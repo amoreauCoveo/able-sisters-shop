@@ -10,7 +10,41 @@
         <meta name="sku" content="handknittank">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['top', 'Everyday;Formal;Comfy', 'Green', 'Green'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'handknittank',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Hand-Knit Tank',
+                        categories: ['top'],
+                        price: {
+                            value: 840.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 840.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/top/handknittank-khvYa9LwqmiNGqjks.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopOuterNKnit4.png'],
+                        color: 'Green',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

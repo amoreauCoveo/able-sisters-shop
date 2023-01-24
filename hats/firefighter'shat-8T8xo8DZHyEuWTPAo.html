@@ -10,7 +10,41 @@
         <meta name="sku" content="firefighter'shat">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['hats', 'Work', 'Yellow', 'Black'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'firefighter'shat',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Firefighter's Hat',
+                        categories: ['hats'],
+                        price: {
+                            value: 1680.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 1680.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/hats/firefighter'shat-8T8xo8DZHyEuWTPAo.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/CapBangsFirefighter3.png'],
+                        color: 'Yellow',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

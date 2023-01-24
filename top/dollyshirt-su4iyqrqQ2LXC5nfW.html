@@ -10,7 +10,41 @@
         <meta name="sku" content="dollyshirt">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['top', 'Everyday;Fairy tale', 'Yellow', 'Orange'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'dollyshirt',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Dolly Shirt',
+                        categories: ['top'],
+                        price: {
+                            value: 960.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 960.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/top/dollyshirt-su4iyqrqQ2LXC5nfW.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopPuffHDolly2.png'],
+                        color: 'Yellow',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

@@ -10,7 +10,41 @@
         <meta name="sku" content="mom'shandknitsweater">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['top', 'Comfy', 'Blue', 'Brown'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'mom'shandknitsweater',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Mom's Hand-Knit Sweater',
+                        categories: ['top'],
+                        price: {
+                            value: NFS,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: NFS,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/top/mom'shandknitsweater-ggDxEA6MJJAAinivi.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopOuterLMother4.png'],
+                        color: 'Blue',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

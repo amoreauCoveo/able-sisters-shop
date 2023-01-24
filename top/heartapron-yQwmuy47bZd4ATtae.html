@@ -10,7 +10,41 @@
         <meta name="sku" content="heartapron">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['top', 'Fairy tale;Work', 'Pink', 'White'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'heartapron',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Heart Apron',
+                        categories: ['top'],
+                        price: {
+                            value: 1000.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 1000.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/top/heartapron-yQwmuy47bZd4ATtae.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopCoatLHeartapron0.png'],
+                        color: 'Pink',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");

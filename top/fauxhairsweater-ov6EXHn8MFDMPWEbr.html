@@ -10,7 +10,41 @@
         <meta name="sku" content="fauxhairsweater">
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-    <script>
+        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+        <script defer>
+            document.addEventListener("DOMContentLoaded", async () => {
+                await window["uv"].emit('ecView', {
+                    type: 'product',
+                    subtypes: ['top', 'Comfy', 'White', 'Black'],
+                    language: 'en-us',
+                    country: 'Canada',
+                    currency: 'CAD'
+                })
+    
+                await window["uv"].emit('ecProduct', {
+                    product: {
+                        productId: 'fauxhairsweater',
+                        sku: 'FNxEraBTeWRiCvtFu',
+                        name: 'Faux-Hair Sweater',
+                        categories: ['top'],
+                        price: {
+                            value: 1200.0,
+                            currency: 'CAD'
+                        },
+                        originalPrice: {
+                            value: 1200.0,
+                            currency: 'CAD'
+                        },
+                        url: 'https://able-sisters-shop.vercel.app/top/fauxhairsweater-ov6EXHn8MFDMPWEbr.html',
+                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopOuterLMohair1.png'],
+                        color: 'White',
+                        description: '',
+                    },
+                    eventType: 'detail'
+                })
+            })
+        </script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");
