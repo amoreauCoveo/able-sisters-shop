@@ -69,6 +69,70 @@
                 args.queryBuilder.advancedExpression.add("@ec_item_group_id==\"flashyjacket\" NOT @uniqueid=xxvyPserigxWRxBZk")
             })
 
+            Coveo.$$(root).on("querySuccess", function (e, args) {
+                args.results.results.forEach(result => {
+                    const product = result.raw;
+                    console.log(result.raw);
+                    const categories = [];
+                    categories.push(product['ec_category'])
+                    const images = [];
+                    images.push(product['thumbnailurl']);
+                    window["uv"].emit('ecProduct', {
+                        product: {
+                            productId: product['ec_productid'],
+                            sku: product['permanentid'],
+                            name: product['ec_name'],
+                            categories: categories,
+                            price: {
+                                value: product['ec_price'],
+                                currency: 'CAD'
+                            },
+                            originalPrice: {
+                                value: product['ec_price'],
+                                currency: 'CAD'
+                            },
+                            url: result.uri,
+                            images: images,
+                            color: product['cat_color'][0],
+                            description: '',
+                        },
+                        eventType: 'detail'
+                    })
+                });
+            });
+
+            Coveo.$$(recRoot).on("querySuccess", function (e, args) {
+                args.results.results.forEach(result => {
+                    const product = result.raw;
+                    console.log(result.raw);
+                    const categories = [];
+                    categories.push(product['ec_category'])
+                    const images = [];
+                    images.push(product['thumbnailurl']);
+                    window["uv"].emit('ecProduct', {
+                        product: {
+                            productId: product['ec_productid'],
+                            sku: product['permanentid'],
+                            name: product['ec_name'],
+                            categories: categories,
+                            price: {
+                                value: product['ec_price'],
+                                currency: 'CAD'
+                            },
+                            originalPrice: {
+                                value: product['ec_price'],
+                                currency: 'CAD'
+                            },
+                            url: result.uri,
+                            images: images,
+                            color: product['cat_color'][0],
+                            description: '',
+                        },
+                        eventType: 'detail'
+                    })
+                });
+            });
+
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "xxvyPserigxWRxBZk", "price": 1960.0, "name": "Flashy Jacket", "category": "Tops", "image": "https://acnhcdn.com/latest/ClosetIcon/TopsTexTopYshirtsLJacketgaudy5.png"};
                 addtocart(itemtoaddtocart);
@@ -126,7 +190,8 @@
         <div class="alternate-colors">
             <div class="CoveoSearchInterface" id="relatedproducts">
                 <div class="CoveoAnalytics" data-search-hub="AbleSisters Individual Listing"></div>
-                <div class="CoveoResultList" data-layout="card" data-wait-animation="fade" data-auto-select-fields-to-include="true">
+                <div class="CoveoResultList" data-layout="card" data-wait-animation="fade" data-auto-select-fields-to-include="false"
+                data-fields-to-include="@thumbnailurl, @cat_color, @ec_category, @ec_productid, @ec_name, @ec_price, @ec_style, @permanentid">
                     <script id="relatedproducts" class="result-template" type="text/html" data-layout="card">
                         <a class="CoveoResultLink">
                             <div>
@@ -157,7 +222,8 @@
         <div>People also viewed:</div>
         <div id="recommendations" class="CoveoRecommendations" data-pipeline="AbleSistersCartRec">
             <div class="coveo-recommendation-body">
-                <div class="CoveoResultList" data-layout="card" data-auto-select-fields-to-include="true">
+                <div class="CoveoResultList" data-layout="card" data-auto-select-fields-to-include="false"
+                data-fields-to-include="@thumbnailurl, @cat_color, @ec_category, @ec_productid, @ec_name, @ec_price, @ec_style, @permanentid">
                     <script id="Default" class="result-template" type="text/html" data-layout="card">
                         <div class="coveo-result-frame">
                             <div class="coveo-result-cell">
