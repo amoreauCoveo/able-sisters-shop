@@ -36,3 +36,21 @@ header {
     font-size: 20px;
     text-align: center;
 }
+
+#nav {
+    display: flex;
+}
+
+.nav-button {
+    padding: 0px 10px 0px 10px;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #fff563;
+}
+
+.nav-button > a {
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+}

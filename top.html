@@ -1,0 +1,150 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Tops</title>
+    <meta name="description" content="Able Sisters Tops">
+    <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
+    <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const root = document.querySelector('#search');
+            Coveo.SearchEndpoint.configureCloudV2Endpoint(
+                "amoreautests2frw2xc0",
+                "xxa4407c2a-e7f9-44c6-998c-7d657c4398ba",
+                "https://platform.cloud.coveo.com/rest/search"
+            );
+            Coveo.init(root);
+            const searchboxroot = document.querySelector("#searchbox");
+            Coveo.initSearchbox(searchboxroot, "./search.html");
+        });
+    </script>
+    <style>
+    .coveo-normal-child-result {
+        padding: 10px;
+    }
+    </style>
+    <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10095/css/CoveoFullSearch.min.css" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <script>
+        (function(c,o,v,e,O,u,a){
+        a='coveoua';c[a]=c[a]||function(){(c[a].q=c[a].q|| []).push(arguments)};
+        c[a].t=Date.now();u=o.createElement(v);u.async=1;u.src=e;
+        O=o.getElementsByTagName(v)[0];O.parentNode.insertBefore(u,O)
+        })(window,document,'script','https://static.cloud.coveo.com/coveo.analytics.js/2/coveoua.js')
+        coveoua('set', 'currencyCode', "Bell");
+        // When using an API key instead of a search token, add the following lines of code
+        /*
+        if (typeof "<USER_ID>" !== 'undefined') {
+          coveoua('set', 'userId', "<USER_ID>");
+        }
+        */
+        // end
+        coveoua('init', "xxa4407c2a-e7f9-44c6-998c-7d657c4398ba", "https://analytics.cloud.coveo.com/rest/ua");
+        </script>
+</head>
+
+<body>
+  <header>
+    <div class="header">
+        <div class="header-title">
+            Able Sisters Shop
+        </div>
+    <div class="cart">
+        <a href="./cart.html">Cart</a>
+    </div>
+</div>
+    <div id="searchbox">
+        <div class="CoveoSearchbox"></div>
+        <div class="CoveoAnalytics" data-search-hub="ablesisters"></div>
+    </div>
+    <div id="nav">
+        <div class="nav-button" id="accessories">
+            <a href="./accessory.html">Accessories</a>
+        </div>
+        <div class="nav-button" id="hats">
+            <a href="./hats.html">Hats</a>
+        </div>
+        <div class="nav-button" id="helmets">
+            <a href="./helmets.html">Helmets</a>
+        </div>
+        <div class="nav-button" id="tops">
+            <a href="./top.html">Tops</a>
+        </div>
+    </div>
+</header>
+    <div id="search" class="CoveoSearchInterface" data-enable-history="true">
+        <div class="CoveoFolding"></div>
+        <div class="CoveoAnalytics" data-search-hub="ablesisters listing"></div>
+        <div class="CoveoCommerceQuery" data-listing="tops"></div>
+        <div class="coveo-main-section">
+          <div class="coveo-facet-column">
+            <div class="CoveoDynamicFacet" data-title="Style" data-field="@ec_style" data-tab="All"></div>
+            <div class="CoveoDynamicFacet" data-title="Color" data-field="@cat_color" data-tab="All"></div>
+            <div class="CoveoDynamicFacet" data-title="Themes" data-field="@ec_themes" data-tab="All"></div>
+          </div>
+          <div class="coveo-results-column">
+            <div class="CoveoShareQuery"></div>
+            <div class="CoveoPreferencesPanel">
+              <div class="CoveoResultsPreferences"></div>
+              <div class="CoveoResultsFiltersPreferences"></div>
+            </div>
+            <div class="CoveoTriggers"></div>
+            <div class="CoveoBreadcrumb"></div>
+            <div class="CoveoDidYouMean"></div>
+            <div class="coveo-results-header">
+              <div class="coveo-summary-section">
+                <span class="CoveoQuerySummary"><div class="coveo-show-if-no-results"></div></span>
+                <span class="CoveoQueryDuration"></span>
+              </div>
+              <div class="coveo-result-layout-section">
+                <span class="CoveoResultLayout"></span>
+              </div>
+              <div class="coveo-sort-section">
+                <span class="CoveoSort" data-sort-criteria="relevancy" data-caption="Relevance"></span>
+                <span class="CoveoSort" data-sort-criteria="date descending,date ascending" data-caption="Date"></span>
+              </div>
+            </div>
+            <div class="CoveoHiddenQuery"></div>
+            <div class="CoveoErrorReport" data-pop-up="false"></div>
+            <div class="CoveoResultList" data-layout="card" data-wait-animation="fade" data-auto-select-fields-to-include="true">
+              <script id="Default" class="result-template" type="text/html" data-layout="card">
+                <div class="coveo-result-frame">
+                  <div class="coveo-result-cell">
+                    <div class="coveo-result-row">
+                      <span class="CoveoResultLink">
+                        <span class="CoveoFieldValue" data-field="@thumbnailurl" data-helper="image" data-html-value="true" data-helper-options-width="200"></span>
+                      </span>
+                    </div>
+                    <div class="coveo-result-row">
+                      <a class="CoveoResultLink"></a>
+                    </div>
+                    <div class="coveo-result-row">
+                      <span class="CoveoFieldValue" data-field="@ec_price"></span> Bells
+                    </div>
+                    <div class="coveo-result-row">
+                      <div class="coveo-result-cell">
+                        <span class="CoveoResultFolding" data-result-template-id="relatedproducts"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </script>
+              <script id="relatedproducts" class="result-template" type="text/html" data-layout="card">
+                <a class="CoveoResultLink">
+                <span class="CoveoFieldValue" data-field="@thumbnailurl" data-helper="image" data-html-value="true" data-helper-options-width="100"></span>
+                </a>
+              </script>
+            </div>
+            <div class="CoveoPager"></div>
+            <div class="CoveoLogo"></div>
+            <div class="CoveoResultsPerPage"></div>
+          </div>
+        </div>
+      </div>
+</body>
+
+</html>
