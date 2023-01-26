@@ -12,6 +12,7 @@
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
         <script src="https://static.goqubit.com/smartserve-6051.js"></script>
         <script defer>
+            var qubitproduct = {};
             document.addEventListener("DOMContentLoaded", async () => {
                 await window["uv"].emit('ecView', {
                     type: 'product',
@@ -21,27 +22,35 @@
                     currency: 'CAD'
                 })
     
-                await window["uv"].emit('ecProduct', {
-                    product: {
-                        productId: 'graduationgown',
-                        sku: 'FNxEraBTeWRiCvtFu',
-                        name: 'Graduation Gown',
-                        categories: ['top'],
-                        price: {
-                            value: 3360.0,
-                            currency: 'CAD'
-                        },
-                        originalPrice: {
-                            value: 3360.0,
-                            currency: 'CAD'
-                        },
-                        url: 'https://able-sisters-shop.vercel.app/top/graduationgown-R9qmNZa7Pu8WnM7z9.html',
-                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopCoatLAcademicdress1.png'],
-                        color: 'Black',
-                        description: '',
+                qubitproduct = {
+                    productId: 'graduationgown',
+                    sku: 'FNxEraBTeWRiCvtFu',
+                    name: 'Graduation Gown',
+                    categories: ['top'],
+                    price: {
+                        value: 3360.0,
+                        currency: 'CAD'
                     },
+                    originalPrice: {
+                        value: 3360.0,
+                        currency: 'CAD'
+                    },
+                    url: 'https://able-sisters-shop.vercel.app/top/graduationgown-R9qmNZa7Pu8WnM7z9.html',
+                    images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopCoatLAcademicdress1.png'],
+                    color: 'Black',
+                    description: '',
+                };
+                await window["uv"].emit('ecProduct', {
+                    product: qubitproduct,
                     eventType: 'detail'
                 })
+
+                const qcart = localStorage.getItem("qcart");
+                if (qcart) {
+                    JSON.parse(qcart).forEach(item => {
+                        window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
+                    })
+                }
             })
         </script>
         <script>
@@ -135,7 +144,7 @@
 
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "R9qmNZa7Pu8WnM7z9", "price": 3360.0, "name": "Graduation Gown", "category": "Tops", "image": "https://acnhcdn.com/latest/ClosetIcon/TopsTexTopCoatLAcademicdress1.png"};
-                addtocart(itemtoaddtocart);
+                addtocart(itemtoaddtocart, qubitproduct);
             })
         });
     </script>

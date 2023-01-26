@@ -12,6 +12,7 @@
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
         <script src="https://static.goqubit.com/smartserve-6051.js"></script>
         <script defer>
+            var qubitproduct = {};
             document.addEventListener("DOMContentLoaded", async () => {
                 await window["uv"].emit('ecView', {
                     type: 'product',
@@ -21,27 +22,35 @@
                     currency: 'CAD'
                 })
     
-                await window["uv"].emit('ecProduct', {
-                    product: {
-                        productId: 'denimvest',
-                        sku: 'FNxEraBTeWRiCvtFu',
-                        name: 'Denim Vest',
-                        categories: ['top'],
-                        price: {
-                            value: 1120.0,
-                            currency: 'CAD'
-                        },
-                        originalPrice: {
-                            value: 1120.0,
-                            currency: 'CAD'
-                        },
-                        url: 'https://able-sisters-shop.vercel.app/top/denimvest-bsKHBDYFQYzenCMWe.html',
-                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopYshirtsNDenim0.png'],
-                        color: 'Light blue',
-                        description: '',
+                qubitproduct = {
+                    productId: 'denimvest',
+                    sku: 'FNxEraBTeWRiCvtFu',
+                    name: 'Denim Vest',
+                    categories: ['top'],
+                    price: {
+                        value: 1120.0,
+                        currency: 'CAD'
                     },
+                    originalPrice: {
+                        value: 1120.0,
+                        currency: 'CAD'
+                    },
+                    url: 'https://able-sisters-shop.vercel.app/top/denimvest-bsKHBDYFQYzenCMWe.html',
+                    images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopYshirtsNDenim0.png'],
+                    color: 'Light blue',
+                    description: '',
+                };
+                await window["uv"].emit('ecProduct', {
+                    product: qubitproduct,
                     eventType: 'detail'
                 })
+
+                const qcart = localStorage.getItem("qcart");
+                if (qcart) {
+                    JSON.parse(qcart).forEach(item => {
+                        window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
+                    })
+                }
             })
         </script>
         <script>
@@ -135,7 +144,7 @@
 
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "bsKHBDYFQYzenCMWe", "price": 1120.0, "name": "Denim Vest", "category": "Tops", "image": "https://acnhcdn.com/latest/ClosetIcon/TopsTexTopYshirtsNDenim0.png"};
-                addtocart(itemtoaddtocart);
+                addtocart(itemtoaddtocart, qubitproduct);
             })
         });
     </script>

@@ -12,6 +12,7 @@
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
         <script src="https://static.goqubit.com/smartserve-6051.js"></script>
         <script defer>
+            var qubitproduct = {};
             document.addEventListener("DOMContentLoaded", async () => {
                 await window["uv"].emit('ecView', {
                     type: 'product',
@@ -21,27 +22,35 @@
                     currency: 'CAD'
                 })
     
-                await window["uv"].emit('ecProduct', {
-                    product: {
-                        productId: 'tightknitsweater',
-                        sku: 'FNxEraBTeWRiCvtFu',
-                        name: 'Tight-Knit Sweater',
-                        categories: ['top'],
-                        price: {
-                            value: 800.0,
-                            currency: 'CAD'
-                        },
-                        originalPrice: {
-                            value: 800.0,
-                            currency: 'CAD'
-                        },
-                        url: 'https://able-sisters-shop.vercel.app/top/tightknitsweater-ngfwkdoA547PTwrd8.html',
-                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopYshirtsLSlimknit1.png'],
-                        color: 'Beige',
-                        description: '',
+                qubitproduct = {
+                    productId: 'tightknitsweater',
+                    sku: 'FNxEraBTeWRiCvtFu',
+                    name: 'Tight-Knit Sweater',
+                    categories: ['top'],
+                    price: {
+                        value: 800.0,
+                        currency: 'CAD'
                     },
+                    originalPrice: {
+                        value: 800.0,
+                        currency: 'CAD'
+                    },
+                    url: 'https://able-sisters-shop.vercel.app/top/tightknitsweater-ngfwkdoA547PTwrd8.html',
+                    images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopYshirtsLSlimknit1.png'],
+                    color: 'Beige',
+                    description: '',
+                };
+                await window["uv"].emit('ecProduct', {
+                    product: qubitproduct,
                     eventType: 'detail'
                 })
+
+                const qcart = localStorage.getItem("qcart");
+                if (qcart) {
+                    JSON.parse(qcart).forEach(item => {
+                        window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
+                    })
+                }
             })
         </script>
         <script>
@@ -135,7 +144,7 @@
 
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "ngfwkdoA547PTwrd8", "price": 800.0, "name": "Tight-Knit Sweater", "category": "Tops", "image": "https://acnhcdn.com/latest/ClosetIcon/TopsTexTopYshirtsLSlimknit1.png"};
-                addtocart(itemtoaddtocart);
+                addtocart(itemtoaddtocart, qubitproduct);
             })
         });
     </script>

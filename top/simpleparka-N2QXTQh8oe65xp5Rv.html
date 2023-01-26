@@ -12,6 +12,7 @@
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
         <script src="https://static.goqubit.com/smartserve-6051.js"></script>
         <script defer>
+            var qubitproduct = {};
             document.addEventListener("DOMContentLoaded", async () => {
                 await window["uv"].emit('ecView', {
                     type: 'product',
@@ -21,27 +22,35 @@
                     currency: 'CAD'
                 })
     
-                await window["uv"].emit('ecProduct', {
-                    product: {
-                        productId: 'simpleparka',
-                        sku: 'FNxEraBTeWRiCvtFu',
-                        name: 'Simple Parka',
-                        categories: ['top'],
-                        price: {
-                            value: 1060.0,
-                            currency: 'CAD'
-                        },
-                        originalPrice: {
-                            value: 1060.0,
-                            currency: 'CAD'
-                        },
-                        url: 'https://able-sisters-shop.vercel.app/top/simpleparka-N2QXTQh8oe65xp5Rv.html',
-                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopOuterLParka5.png'],
-                        color: 'Pink',
-                        description: '',
+                qubitproduct = {
+                    productId: 'simpleparka',
+                    sku: 'FNxEraBTeWRiCvtFu',
+                    name: 'Simple Parka',
+                    categories: ['top'],
+                    price: {
+                        value: 1060.0,
+                        currency: 'CAD'
                     },
+                    originalPrice: {
+                        value: 1060.0,
+                        currency: 'CAD'
+                    },
+                    url: 'https://able-sisters-shop.vercel.app/top/simpleparka-N2QXTQh8oe65xp5Rv.html',
+                    images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopOuterLParka5.png'],
+                    color: 'Pink',
+                    description: '',
+                };
+                await window["uv"].emit('ecProduct', {
+                    product: qubitproduct,
                     eventType: 'detail'
                 })
+
+                const qcart = localStorage.getItem("qcart");
+                if (qcart) {
+                    JSON.parse(qcart).forEach(item => {
+                        window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
+                    })
+                }
             })
         </script>
         <script>
@@ -135,7 +144,7 @@
 
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "N2QXTQh8oe65xp5Rv", "price": 1060.0, "name": "Simple Parka", "category": "Tops", "image": "https://acnhcdn.com/latest/ClosetIcon/TopsTexTopOuterLParka5.png"};
-                addtocart(itemtoaddtocart);
+                addtocart(itemtoaddtocart, qubitproduct);
             })
         });
     </script>

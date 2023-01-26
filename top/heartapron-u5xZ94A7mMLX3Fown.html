@@ -12,6 +12,7 @@
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
         <script src="https://static.goqubit.com/smartserve-6051.js"></script>
         <script defer>
+            var qubitproduct = {};
             document.addEventListener("DOMContentLoaded", async () => {
                 await window["uv"].emit('ecView', {
                     type: 'product',
@@ -21,27 +22,35 @@
                     currency: 'CAD'
                 })
     
-                await window["uv"].emit('ecProduct', {
-                    product: {
-                        productId: 'heartapron',
-                        sku: 'FNxEraBTeWRiCvtFu',
-                        name: 'Heart Apron',
-                        categories: ['top'],
-                        price: {
-                            value: 1000.0,
-                            currency: 'CAD'
-                        },
-                        originalPrice: {
-                            value: 1000.0,
-                            currency: 'CAD'
-                        },
-                        url: 'https://able-sisters-shop.vercel.app/top/heartapron-u5xZ94A7mMLX3Fown.html',
-                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopCoatLHeartapron4.png'],
-                        color: 'Green',
-                        description: '',
+                qubitproduct = {
+                    productId: 'heartapron',
+                    sku: 'FNxEraBTeWRiCvtFu',
+                    name: 'Heart Apron',
+                    categories: ['top'],
+                    price: {
+                        value: 1000.0,
+                        currency: 'CAD'
                     },
+                    originalPrice: {
+                        value: 1000.0,
+                        currency: 'CAD'
+                    },
+                    url: 'https://able-sisters-shop.vercel.app/top/heartapron-u5xZ94A7mMLX3Fown.html',
+                    images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopCoatLHeartapron4.png'],
+                    color: 'Green',
+                    description: '',
+                };
+                await window["uv"].emit('ecProduct', {
+                    product: qubitproduct,
                     eventType: 'detail'
                 })
+
+                const qcart = localStorage.getItem("qcart");
+                if (qcart) {
+                    JSON.parse(qcart).forEach(item => {
+                        window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
+                    })
+                }
             })
         </script>
         <script>
@@ -135,7 +144,7 @@
 
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "u5xZ94A7mMLX3Fown", "price": 1000.0, "name": "Heart Apron", "category": "Tops", "image": "https://acnhcdn.com/latest/ClosetIcon/TopsTexTopCoatLHeartapron4.png"};
-                addtocart(itemtoaddtocart);
+                addtocart(itemtoaddtocart, qubitproduct);
             })
         });
     </script>

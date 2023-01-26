@@ -12,6 +12,7 @@
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
         <script src="https://static.goqubit.com/smartserve-6051.js"></script>
         <script defer>
+            var qubitproduct = {};
             document.addEventListener("DOMContentLoaded", async () => {
                 await window["uv"].emit('ecView', {
                     type: 'product',
@@ -21,27 +22,35 @@
                     currency: 'CAD'
                 })
     
-                await window["uv"].emit('ecProduct', {
-                    product: {
-                        productId: 'labelleknitshirt',
-                        sku: 'FNxEraBTeWRiCvtFu',
-                        name: 'Labelle Knit Shirt',
-                        categories: ['top'],
-                        price: {
-                            value: 2270.0,
-                            currency: 'CAD'
-                        },
-                        originalPrice: {
-                            value: 2270.0,
-                            currency: 'CAD'
-                        },
-                        url: 'https://able-sisters-shop.vercel.app/top/labelleknitshirt-QTimoBzaQotpqZqf6.html',
-                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopTshirtsHKate2.png'],
-                        color: 'Red',
-                        description: '',
+                qubitproduct = {
+                    productId: 'labelleknitshirt',
+                    sku: 'FNxEraBTeWRiCvtFu',
+                    name: 'Labelle Knit Shirt',
+                    categories: ['top'],
+                    price: {
+                        value: 2270.0,
+                        currency: 'CAD'
                     },
+                    originalPrice: {
+                        value: 2270.0,
+                        currency: 'CAD'
+                    },
+                    url: 'https://able-sisters-shop.vercel.app/top/labelleknitshirt-QTimoBzaQotpqZqf6.html',
+                    images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopTshirtsHKate2.png'],
+                    color: 'Red',
+                    description: '',
+                };
+                await window["uv"].emit('ecProduct', {
+                    product: qubitproduct,
                     eventType: 'detail'
                 })
+
+                const qcart = localStorage.getItem("qcart");
+                if (qcart) {
+                    JSON.parse(qcart).forEach(item => {
+                        window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
+                    })
+                }
             })
         </script>
         <script>
@@ -135,7 +144,7 @@
 
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "QTimoBzaQotpqZqf6", "price": 2270.0, "name": "Labelle Knit Shirt", "category": "Tops", "image": "https://acnhcdn.com/latest/ClosetIcon/TopsTexTopTshirtsHKate2.png"};
-                addtocart(itemtoaddtocart);
+                addtocart(itemtoaddtocart, qubitproduct);
             })
         });
     </script>

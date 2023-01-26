@@ -18,6 +18,12 @@
                 country: 'Canada',
                 currency: 'CAD'
             })
+            const qcart = localStorage.getItem("qcart");
+            if (qcart) {
+                JSON.parse(qcart).forEach(item => {
+                    window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
+                })
+            }
         })
     </script>
     <script>
@@ -36,6 +42,7 @@
             padding: 10px;
         }
     </style>
+    <script src="./src/scripts.js"></script>
     <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10095/css/CoveoFullSearch.min.css" />
     <link rel="stylesheet" href="./src/style.css" />
     <script>

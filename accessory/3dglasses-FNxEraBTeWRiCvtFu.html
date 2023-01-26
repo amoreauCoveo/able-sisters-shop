@@ -1,50 +1,59 @@
 <!doctype html>
 
-    <html lang="en">
-    
-    <head>
-        <meta charset="utf-8">
-    
-        <title>3D Glasses</title>
-        <meta name="description" content="3D Glasses">
-        <meta name="sku" content="3dglasses">
-        <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
-        <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
-        <script src="https://static.goqubit.com/smartserve-6051.js"></script>
-        <script defer>
-            document.addEventListener("DOMContentLoaded", async () => {
-                await window["uv"].emit('ecView', {
-                    type: 'product',
-                    subtypes: ['accessory', 'Party', 'White', 'Colorful'],
-                    language: 'en-us',
-                    country: 'Canada',
-                    currency: 'CAD'
-                })
-    
-                await window["uv"].emit('ecProduct', {
-                    product: {
-                        productId: '3dglasses',
-                        sku: 'FNxEraBTeWRiCvtFu',
-                        name: '3D Glasses',
-                        categories: ['accessory'],
-                        price: {
-                            value: 490.0,
-                            currency: 'CAD'
-                        },
-                        originalPrice: {
-                            value: 490.0,
-                            currency: 'CAD'
-                        },
-                        url: 'https://able-sisters-shop.vercel.app/accessory/3dglasses-FNxEraBTeWRiCvtFu.html',
-                        images: ['https://acnhcdn.com/latest/ClosetIcon/AccessoryGlassThreed0.png'],
-                        color: 'White',
-                        description: '',
-                    },
-                    eventType: 'detail'
-                })
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>3D Glasses</title>
+    <meta name="description" content="3D Glasses">
+    <meta name="sku" content="3dglasses">
+    <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
+    <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
+    <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+    <script defer>
+        var qubitproduct = {};
+        document.addEventListener("DOMContentLoaded", async () => {
+            await window["uv"].emit('ecView', {
+                type: 'product',
+                subtypes: ['accessory', 'Party', 'White', 'Colorful'],
+                language: 'en-us',
+                country: 'Canada',
+                currency: 'CAD'
             })
-        </script>
-        <script>
+
+            qubitproduct = {
+                productId: '3dglasses',
+                sku: 'FNxEraBTeWRiCvtFu',
+                name: '3D Glasses',
+                categories: ['accessory'],
+                price: {
+                    value: 490.0,
+                    currency: 'CAD'
+                },
+                originalPrice: {
+                    value: 490.0,
+                    currency: 'CAD'
+                },
+                url: 'https://able-sisters-shop.vercel.app/accessory/3dglasses-FNxEraBTeWRiCvtFu.html',
+                images: ['https://acnhcdn.com/latest/ClosetIcon/AccessoryGlassThreed0.png'],
+                color: 'White',
+                description: '',
+            };
+            await window["uv"].emit('ecProduct', {
+                product: qubitproduct,
+                eventType: 'detail'
+            })
+
+            const qcart = localStorage.getItem("qcart");
+            if (qcart) {
+                JSON.parse(qcart).forEach(item => {
+                    window["uv"].emit('ecBasketItem', returnFullBasketItem(item))
+                })
+            }
+        })
+    </script>
+    <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#relatedproducts');
             const searchboxroot = document.querySelector("#searchbox");
@@ -54,17 +63,17 @@
                 "xxa4407c2a-e7f9-44c6-998c-7d657c4398ba",
                 "https://platform.cloud.coveo.com/rest/search",
                 {
-                  "queryStringArguments": {
-                    "mlParameters": '{"itemId": "FNxEraBTeWRiCvtFu"}',
-                    "recommendation": "FrequentlyViewed",
-                    "numberOfResults": 5
-                  }
+                    "queryStringArguments": {
+                        "mlParameters": '{"itemId": "FNxEraBTeWRiCvtFu"}',
+                        "recommendation": "FrequentlyViewed",
+                        "numberOfResults": 5
+                    }
                 }
             );
             Coveo.init(root);
             Coveo.init(recRoot);
             Coveo.initSearchbox(searchboxroot, "../search.html");
-            
+
             Coveo.$$(root).on("doneBuildingQuery", function (e, args) {
                 args.queryBuilder.advancedExpression.add("@ec_item_group_id==\"3dglasses\" NOT @uniqueid=FNxEraBTeWRiCvtFu")
             })
@@ -133,79 +142,81 @@
                 });
             });
 
-            document.querySelector("#addToCartButton").addEventListener("click", function (){
-                const itemtoaddtocart = {"sku": "FNxEraBTeWRiCvtFu", "price": 490.0, "name": "3D Glasses", "category": "Accessories", "image": "https://acnhcdn.com/latest/ClosetIcon/AccessoryGlassThreed0.png"};
-                addtocart(itemtoaddtocart);
+            document.querySelector("#addToCartButton").addEventListener("click", function () {
+                const itemtoaddtocart = { "sku": "FNxEraBTeWRiCvtFu", "price": 490.0, "name": "3D Glasses", "category": "Accessories", "image": "https://acnhcdn.com/latest/ClosetIcon/AccessoryGlassThreed0.png" };
+                addtocart(itemtoaddtocart, qubitproduct);
             })
         });
     </script>
-        <link rel="stylesheet" href="../src/style.css" />
-        <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10095/css/CoveoFullSearch.min.css" />
-        <script src="../src/scripts.js"></script>
-        <script>
-            (function(c,o,v,e,O,u,a){
-            a='coveoua';c[a]=c[a]||function(){(c[a].q=c[a].q|| []).push(arguments)};
-            c[a].t=Date.now();u=o.createElement(v);u.async=1;u.src=e;
-            O=o.getElementsByTagName(v)[0];O.parentNode.insertBefore(u,O)
-            })(window,document,'script','https://static.cloud.coveo.com/coveo.analytics.js/2/coveoua.js')
-            coveoua('set', 'currencyCode', "Bell");
-            // When using an API key instead of a search token, add the following lines of code
-            /*
-            if (typeof "<USER_ID>" !== 'undefined') {
-              coveoua('set', 'userId', "<USER_ID>");
-            }
-            */
-            // end
-            coveoua('init', "xxe96351e4-1aac-40f8-b59e-43ea4545936d", "https://analytics.cloud.coveo.com/rest/ua");
-            coveoua('ec:addProduct', {
-                'id':"FNxEraBTeWRiCvtFu",
-                'name': "3D Glasses",
-                'category': "Accessories",
-                'price': 490.0,
-                'position': 1
-            })
-            coveoua('ec:setAction', 'detail');
-            coveoua('send', 'event')
-            </script>
-    </head>
-    <body>
+    <link rel="stylesheet" href="../src/style.css" />
+    <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10095/css/CoveoFullSearch.min.css" />
+    <script src="../src/scripts.js"></script>
+    <script>
+        (function (c, o, v, e, O, u, a) {
+            a = 'coveoua'; c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            c[a].t = Date.now(); u = o.createElement(v); u.async = 1; u.src = e;
+            O = o.getElementsByTagName(v)[0]; O.parentNode.insertBefore(u, O)
+        })(window, document, 'script', 'https://static.cloud.coveo.com/coveo.analytics.js/2/coveoua.js')
+        coveoua('set', 'currencyCode', "Bell");
+        // When using an API key instead of a search token, add the following lines of code
+        /*
+        if (typeof "<USER_ID>" !== 'undefined') {
+          coveoua('set', 'userId', "<USER_ID>");
+        }
+        */
+        // end
+        coveoua('init', "xxe96351e4-1aac-40f8-b59e-43ea4545936d", "https://analytics.cloud.coveo.com/rest/ua");
+        coveoua('ec:addProduct', {
+            'id': "FNxEraBTeWRiCvtFu",
+            'name': "3D Glasses",
+            'category': "Accessories",
+            'price': 490.0,
+            'position': 1
+        })
+        coveoua('ec:setAction', 'detail');
+        coveoua('send', 'event')
+    </script>
+</head>
+
+<body>
     <header>
         <div class="header">
             <div class="header-title">
                 <a href="../index.html">Able Sisters Shop</a>
             </div>
-        <div class="cart">
-            <a href="../cart.html">Cart</a>
+            <div class="cart">
+                <a href="../cart.html">Cart</a>
+            </div>
         </div>
-    </div>
         <div id="searchbox">
             <div class="CoveoSearchbox"></div>
             <div class="CoveoAnalytics" data-search-hub="ablesisters search"></div>
         </div>
         <div id="nav">
-        <div class="nav-button" id="accessories">
-            <a href="../accessory.html">Accessories</a>
+            <div class="nav-button" id="accessories">
+                <a href="../accessory.html">Accessories</a>
+            </div>
+            <div class="nav-button" id="hats">
+                <a href="../hats.html">Hats</a>
+            </div>
+            <div class="nav-button" id="helmets">
+                <a href="../helmets.html">Helmets</a>
+            </div>
+            <div class="nav-button" id="tops">
+                <a href="../top.html">Tops</a>
+            </div>
         </div>
-        <div class="nav-button" id="hats">
-            <a href="../hats.html">Hats</a>
-        </div>
-        <div class="nav-button" id="helmets">
-            <a href="../helmets.html">Helmets</a>
-        </div>
-        <div class="nav-button" id="tops">
-            <a href="../top.html">Tops</a>
-        </div>
-    </div>
     </header>
-        <h1>3D Glasses</h1>
-        <img src="https://acnhcdn.com/latest/ClosetIcon/AccessoryGlassThreed0.png"/>
+    <h1>3D Glasses</h1>
+    <img src="https://acnhcdn.com/latest/ClosetIcon/AccessoryGlassThreed0.png" />
     <div>
         <span>Also available in:</span>
         <div class="alternate-colors">
             <div class="CoveoSearchInterface" id="relatedproducts">
                 <div class="CoveoAnalytics" data-search-hub="AbleSisters Individual Listing"></div>
-                <div class="CoveoResultList" data-layout="card" data-wait-animation="fade" data-auto-select-fields-to-include="false"
-                data-fields-to-include="@thumbnailurl, @cat_color, @ec_category, @ec_productid, @ec_name, @ec_price, @ec_style, @permanentid">
+                <div class="CoveoResultList" data-layout="card" data-wait-animation="fade"
+                    data-auto-select-fields-to-include="false"
+                    data-fields-to-include="@thumbnailurl, @cat_color, @ec_category, @ec_productid, @ec_name, @ec_price, @ec_style, @permanentid">
                     <script id="relatedproducts" class="result-template" type="text/html" data-layout="card">
                         <a class="CoveoResultLink">
                             <div>
@@ -218,28 +229,28 @@
             </div>
         </div>
     </div>
-        <table>
-            <tr>
-                <td>Price</td>
-                <td>490.0 Bells</td>
-            </tr>
-            <tr>
-                <td>Style</td>
-                <td>Active</td>
-            </tr>
-            <tr>
-                <td>Themes</td>
-                <td>Party</td>
-            </tr>
-        </table>
-        <button class="add-to-cart-button" id="addToCartButton">Add to cart</button>
-        <div>People also viewed:</div>
-        <div id="recommendations" class="CoveoRecommendations" data-pipeline="AbleSistersCartRec">
-            <div class="CoveoAnalytics" data-search-hub="ablesisters rec"></div>
-            <div class="coveo-recommendation-body">
-                <div class="CoveoResultList" data-layout="card" data-auto-select-fields-to-include="false"
+    <table>
+        <tr>
+            <td>Price</td>
+            <td>490.0 Bells</td>
+        </tr>
+        <tr>
+            <td>Style</td>
+            <td>Active</td>
+        </tr>
+        <tr>
+            <td>Themes</td>
+            <td>Party</td>
+        </tr>
+    </table>
+    <button class="add-to-cart-button" id="addToCartButton">Add to cart</button>
+    <div>People also viewed:</div>
+    <div id="recommendations" class="CoveoRecommendations" data-pipeline="AbleSistersCartRec">
+        <div class="CoveoAnalytics" data-search-hub="ablesisters rec"></div>
+        <div class="coveo-recommendation-body">
+            <div class="CoveoResultList" data-layout="card" data-auto-select-fields-to-include="false"
                 data-fields-to-include="@thumbnailurl, @cat_color, @ec_category, @ec_productid, @ec_name, @ec_price, @ec_style, @permanentid">
-                    <script id="Default" class="result-template" type="text/html" data-layout="card">
+                <script id="Default" class="result-template" type="text/html" data-layout="card">
                         <div class="coveo-result-frame">
                             <div class="coveo-result-cell">
                                 <div class="coveo-result-row">
@@ -261,9 +272,9 @@
                             </div>
                         </div>
                     </script>
-                </div>
             </div>
         </div>
-    </body>
-    
-    </html>
+    </div>
+</body>
+
+</html>

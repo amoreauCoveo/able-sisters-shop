@@ -9,6 +9,23 @@
     <meta name="description" content="Able Sisters Tops">
     <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/CoveoJsSearch.Lazy.min.js"></script>
     <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
+    <script src="https://static.goqubit.com/smartserve-6051.js"></script>
+    <script defer>
+        document.addEventListener("DOMContentLoaded", async () => {
+            await window["uv"].emit('ecView', {
+                type: 'category',
+                language: 'en-us',
+                country: 'Canada',
+                currency: 'CAD'
+            })
+            const qcart = localStorage.getItem("qcart");
+            if (qcart) {
+                JSON.parse(qcart).forEach(item => {
+                    window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
+                })
+            }
+        })
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector('#search');
@@ -27,6 +44,7 @@
         padding: 10px;
     }
     </style>
+    <script src="./src/scripts.js"></script>
     <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10095/css/CoveoFullSearch.min.css" />
     <link rel="stylesheet" href="./src/style.css" />
     <script>

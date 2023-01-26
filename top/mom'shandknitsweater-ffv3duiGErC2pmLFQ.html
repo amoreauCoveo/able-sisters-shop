@@ -12,6 +12,7 @@
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
         <script src="https://static.goqubit.com/smartserve-6051.js"></script>
         <script defer>
+            var qubitproduct = {};
             document.addEventListener("DOMContentLoaded", async () => {
                 await window["uv"].emit('ecView', {
                     type: 'product',
@@ -21,27 +22,35 @@
                     currency: 'CAD'
                 })
     
-                await window["uv"].emit('ecProduct', {
-                    product: {
-                        productId: 'mom'shandknitsweater',
-                        sku: 'FNxEraBTeWRiCvtFu',
-                        name: 'Mom's Hand-Knit Sweater',
-                        categories: ['top'],
-                        price: {
-                            value: NFS,
-                            currency: 'CAD'
-                        },
-                        originalPrice: {
-                            value: NFS,
-                            currency: 'CAD'
-                        },
-                        url: 'https://able-sisters-shop.vercel.app/top/mom'shandknitsweater-ffv3duiGErC2pmLFQ.html',
-                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopOuterLMother1.png'],
-                        color: 'Beige',
-                        description: '',
+                qubitproduct = {
+                    productId: 'mom'shandknitsweater',
+                    sku: 'FNxEraBTeWRiCvtFu',
+                    name: 'Mom's Hand-Knit Sweater',
+                    categories: ['top'],
+                    price: {
+                        value: NFS,
+                        currency: 'CAD'
                     },
+                    originalPrice: {
+                        value: NFS,
+                        currency: 'CAD'
+                    },
+                    url: 'https://able-sisters-shop.vercel.app/top/mom'shandknitsweater-ffv3duiGErC2pmLFQ.html',
+                    images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopOuterLMother1.png'],
+                    color: 'Beige',
+                    description: '',
+                };
+                await window["uv"].emit('ecProduct', {
+                    product: qubitproduct,
                     eventType: 'detail'
                 })
+
+                const qcart = localStorage.getItem("qcart");
+                if (qcart) {
+                    JSON.parse(qcart).forEach(item => {
+                        window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
+                    })
+                }
             })
         </script>
         <script>
@@ -135,7 +144,7 @@
 
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "ffv3duiGErC2pmLFQ", "price": NFS, "name": "Mom's Hand-Knit Sweater", "category": "Tops", "image": "https://acnhcdn.com/latest/ClosetIcon/TopsTexTopOuterLMother1.png"};
-                addtocart(itemtoaddtocart);
+                addtocart(itemtoaddtocart, qubitproduct);
             })
         });
     </script>

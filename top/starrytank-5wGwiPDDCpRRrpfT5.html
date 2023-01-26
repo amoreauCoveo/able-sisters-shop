@@ -12,6 +12,7 @@
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
         <script src="https://static.goqubit.com/smartserve-6051.js"></script>
         <script defer>
+            var qubitproduct = {};
             document.addEventListener("DOMContentLoaded", async () => {
                 await window["uv"].emit('ecView', {
                     type: 'product',
@@ -21,27 +22,35 @@
                     currency: 'CAD'
                 })
     
-                await window["uv"].emit('ecProduct', {
-                    product: {
-                        productId: 'starrytank',
-                        sku: 'FNxEraBTeWRiCvtFu',
-                        name: 'Starry Tank',
-                        categories: ['top'],
-                        price: {
-                            value: 800.0,
-                            currency: 'CAD'
-                        },
-                        originalPrice: {
-                            value: 800.0,
-                            currency: 'CAD'
-                        },
-                        url: 'https://able-sisters-shop.vercel.app/top/starrytank-5wGwiPDDCpRRrpfT5.html',
-                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopTshirtsNStar0.png'],
-                        color: 'White',
-                        description: '',
+                qubitproduct = {
+                    productId: 'starrytank',
+                    sku: 'FNxEraBTeWRiCvtFu',
+                    name: 'Starry Tank',
+                    categories: ['top'],
+                    price: {
+                        value: 800.0,
+                        currency: 'CAD'
                     },
+                    originalPrice: {
+                        value: 800.0,
+                        currency: 'CAD'
+                    },
+                    url: 'https://able-sisters-shop.vercel.app/top/starrytank-5wGwiPDDCpRRrpfT5.html',
+                    images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopTshirtsNStar0.png'],
+                    color: 'White',
+                    description: '',
+                };
+                await window["uv"].emit('ecProduct', {
+                    product: qubitproduct,
                     eventType: 'detail'
                 })
+
+                const qcart = localStorage.getItem("qcart");
+                if (qcart) {
+                    JSON.parse(qcart).forEach(item => {
+                        window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
+                    })
+                }
             })
         </script>
         <script>
@@ -135,7 +144,7 @@
 
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "5wGwiPDDCpRRrpfT5", "price": 800.0, "name": "Starry Tank", "category": "Tops", "image": "https://acnhcdn.com/latest/ClosetIcon/TopsTexTopTshirtsNStar0.png"};
-                addtocart(itemtoaddtocart);
+                addtocart(itemtoaddtocart, qubitproduct);
             })
         });
     </script>

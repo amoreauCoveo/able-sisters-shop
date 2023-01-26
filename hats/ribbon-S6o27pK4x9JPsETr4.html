@@ -12,6 +12,7 @@
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
         <script src="https://static.goqubit.com/smartserve-6051.js"></script>
         <script defer>
+            var qubitproduct = {};
             document.addEventListener("DOMContentLoaded", async () => {
                 await window["uv"].emit('ecView', {
                     type: 'product',
@@ -21,27 +22,35 @@
                     currency: 'CAD'
                 })
     
-                await window["uv"].emit('ecProduct', {
-                    product: {
-                        productId: 'ribbon',
-                        sku: 'FNxEraBTeWRiCvtFu',
-                        name: 'Ribbon',
-                        categories: ['hats'],
-                        price: {
-                            value: 490.0,
-                            currency: 'CAD'
-                        },
-                        originalPrice: {
-                            value: 490.0,
-                            currency: 'CAD'
-                        },
-                        url: 'https://able-sisters-shop.vercel.app/hats/ribbon-S6o27pK4x9JPsETr4.html',
-                        images: ['https://acnhcdn.com/latest/ClosetIcon/CapOrnamentLRibbon7.png'],
-                        color: 'Black',
-                        description: '',
+                qubitproduct = {
+                    productId: 'ribbon',
+                    sku: 'FNxEraBTeWRiCvtFu',
+                    name: 'Ribbon',
+                    categories: ['hats'],
+                    price: {
+                        value: 490.0,
+                        currency: 'CAD'
                     },
+                    originalPrice: {
+                        value: 490.0,
+                        currency: 'CAD'
+                    },
+                    url: 'https://able-sisters-shop.vercel.app/hats/ribbon-S6o27pK4x9JPsETr4.html',
+                    images: ['https://acnhcdn.com/latest/ClosetIcon/CapOrnamentLRibbon7.png'],
+                    color: 'Black',
+                    description: '',
+                };
+                await window["uv"].emit('ecProduct', {
+                    product: qubitproduct,
                     eventType: 'detail'
                 })
+
+                const qcart = localStorage.getItem("qcart");
+                if (qcart) {
+                    JSON.parse(qcart).forEach(item => {
+                        window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
+                    })
+                }
             })
         </script>
         <script>
@@ -135,7 +144,7 @@
 
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "S6o27pK4x9JPsETr4", "price": 490.0, "name": "Ribbon", "category": "Hats", "image": "https://acnhcdn.com/latest/ClosetIcon/CapOrnamentLRibbon7.png"};
-                addtocart(itemtoaddtocart);
+                addtocart(itemtoaddtocart, qubitproduct);
             })
         });
     </script>

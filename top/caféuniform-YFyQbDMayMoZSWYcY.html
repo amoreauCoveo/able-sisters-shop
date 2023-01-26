@@ -12,6 +12,7 @@
         <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
         <script src="https://static.goqubit.com/smartserve-6051.js"></script>
         <script defer>
+            var qubitproduct = {};
             document.addEventListener("DOMContentLoaded", async () => {
                 await window["uv"].emit('ecView', {
                     type: 'product',
@@ -21,27 +22,35 @@
                     currency: 'CAD'
                 })
     
-                await window["uv"].emit('ecProduct', {
-                    product: {
-                        productId: 'caféuniform',
-                        sku: 'FNxEraBTeWRiCvtFu',
-                        name: 'Café Uniform',
-                        categories: ['top'],
-                        price: {
-                            value: 1500.0,
-                            currency: 'CAD'
-                        },
-                        originalPrice: {
-                            value: 1500.0,
-                            currency: 'CAD'
-                        },
-                        url: 'https://able-sisters-shop.vercel.app/top/caféuniform-YFyQbDMayMoZSWYcY.html',
-                        images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopCoatLCafe3.png'],
-                        color: 'Brown',
-                        description: '',
+                qubitproduct = {
+                    productId: 'caféuniform',
+                    sku: 'FNxEraBTeWRiCvtFu',
+                    name: 'Café Uniform',
+                    categories: ['top'],
+                    price: {
+                        value: 1500.0,
+                        currency: 'CAD'
                     },
+                    originalPrice: {
+                        value: 1500.0,
+                        currency: 'CAD'
+                    },
+                    url: 'https://able-sisters-shop.vercel.app/top/caféuniform-YFyQbDMayMoZSWYcY.html',
+                    images: ['https://acnhcdn.com/latest/ClosetIcon/TopsTexTopCoatLCafe3.png'],
+                    color: 'Brown',
+                    description: '',
+                };
+                await window["uv"].emit('ecProduct', {
+                    product: qubitproduct,
                     eventType: 'detail'
                 })
+
+                const qcart = localStorage.getItem("qcart");
+                if (qcart) {
+                    JSON.parse(qcart).forEach(item => {
+                        window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
+                    })
+                }
             })
         </script>
         <script>
@@ -135,7 +144,7 @@
 
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "YFyQbDMayMoZSWYcY", "price": 1500.0, "name": "Café Uniform", "category": "Tops", "image": "https://acnhcdn.com/latest/ClosetIcon/TopsTexTopCoatLCafe3.png"};
-                addtocart(itemtoaddtocart);
+                addtocart(itemtoaddtocart, qubitproduct);
             })
         });
     </script>
