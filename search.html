@@ -11,20 +11,20 @@
   <script src="https://static.cloud.coveo.com/searchui/v2.10095/js/templates/templates.js"></script>
   <script src="https://static.goqubit.com/smartserve-6051.js"></script>
   <script defer>
-      document.addEventListener("DOMContentLoaded", async () => {
-          await window["uv"].emit('ecView', {
-              type: 'search',
-              language: 'en-us',
-              country: 'Canada',
-              currency: 'CAD'
-          })
-          const qcart = localStorage.getItem("qcart");
-            if (qcart) {
-                JSON.parse(qcart).forEach(item => {
-                    window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
-                })
-            }
+    document.addEventListener("DOMContentLoaded", async () => {
+      await window["uv"].emit('ecView', {
+        type: 'search',
+        language: 'en-us',
+        country: 'Canada',
+        currency: 'CAD'
       })
+      const qcart = localStorage.getItem("qcart");
+      if (qcart) {
+        JSON.parse(qcart).forEach(item => {
+          window["uv"].emit('ecBasketItem', returnFullBasketItem(item))
+        })
+      }
+    })
   </script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -35,6 +35,37 @@
         "https://platform.cloud.coveo.com/rest/search"
       );
       Coveo.init(root);
+      Coveo.$$(root).on("querySuccess", function (e, args) {
+        args.results.results.forEach(result => {
+          const product = result.raw;
+          console.log(result.raw);
+          const categories = [];
+          categories.push(product['ec_category'])
+          const images = [];
+          images.push(product['thumbnailurl']);
+          window["uv"].emit('ecProduct', {
+            product: {
+              productId: product['ec_productid'],
+              sku: product['permanentid'],
+              name: product['ec_name'],
+              categories: categories,
+              price: {
+                value: product['ec_price'],
+                currency: 'CAD'
+              },
+              originalPrice: {
+                value: product['ec_price'],
+                currency: 'CAD'
+              },
+              url: result.uri,
+              images: images,
+              color: product['cat_color'][0],
+              description: '',
+            },
+            eventType: 'detail'
+          })
+        });
+      });
     });
   </script>
   <style>
@@ -79,18 +110,18 @@
     </div>
     <div id="nav">
       <div class="nav-button" id="accessories">
-          <a href="./accessory.html">Accessories</a>
+        <a href="./accessory.html">Accessories</a>
       </div>
       <div class="nav-button" id="hats">
-          <a href="./hats.html">Hats</a>
+        <a href="./hats.html">Hats</a>
       </div>
       <div class="nav-button" id="helmets">
-          <a href="./helmets.html">Helmets</a>
+        <a href="./helmets.html">Helmets</a>
       </div>
       <div class="nav-button" id="tops">
-          <a href="./top.html">Tops</a>
+        <a href="./top.html">Tops</a>
       </div>
-  </div>
+    </div>
   </header>
   <div id="search" class="CoveoSearchInterface" data-enable-history="true">
     <div class="CoveoFolding"></div>
@@ -135,7 +166,8 @@
         <div class="CoveoHiddenQuery"></div>
         <div class="CoveoErrorReport" data-pop-up="false"></div>
         <div class="CoveoResultList" data-layout="card" data-wait-animation="fade"
-          data-auto-select-fields-to-include="true">
+          data-auto-select-fields-to-include="false"
+          data-fields-to-include="@thumbnailurl, @cat_color, @ec_category, @ec_productid, @ec_name, @ec_price, @ec_style, @permanentid">
           <script id="Default" class="result-template" type="text/html" data-layout="card">
                 <div class="coveo-result-frame">
                   <div class="coveo-result-cell">
