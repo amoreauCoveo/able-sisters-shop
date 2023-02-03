@@ -50,6 +50,24 @@
                     JSON.parse(qcart).forEach(item => {
                         window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
                     })
+                    const cartTotalPrice = getCartTotal();
+                    window["uv"].emit('ecBasketSummary', {
+                        basket: {
+                            subtotal: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            },
+                            total: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            },
+                            quantity: getCartNumberItems(),
+                            subtotalIncludingTax: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            }
+                        }
+                    })
                 }
             })
         </script>
@@ -145,6 +163,32 @@
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "nKHTeWb7yBHnckSXJ", "price": 630.0, "name": "Soft-Serve Hat", "category": "Hats", "image": "https://acnhcdn.com/latest/ClosetIcon/CapHatIcecream2.png"};
                 addtocart(itemtoaddtocart, qubitproduct);
+                window["uv"].emit('ecBasketItemAction', {
+                    product: {
+                        productId: 'softservehat',
+                        sku: 'nKHTeWb7yBHnckSXJ'
+                    },
+                    action: 'add',
+                    quantity: 1
+                })
+                const cartTotalPrice = getCartTotal();
+                window["uv"].emit('ecBasketSummary', {
+                    basket: {
+                        subtotal: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        },
+                        total: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        },
+                        quantity: getCartNumberItems(),
+                        subtotalIncludingTax: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        }
+                    }
+                })
             })
         });
     </script>

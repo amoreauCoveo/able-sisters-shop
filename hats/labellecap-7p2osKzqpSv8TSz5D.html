@@ -50,6 +50,24 @@
                     JSON.parse(qcart).forEach(item => {
                         window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
                     })
+                    const cartTotalPrice = getCartTotal();
+                    window["uv"].emit('ecBasketSummary', {
+                        basket: {
+                            subtotal: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            },
+                            total: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            },
+                            quantity: getCartNumberItems(),
+                            subtotalIncludingTax: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            }
+                        }
+                    })
                 }
             })
         </script>
@@ -145,6 +163,32 @@
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "7p2osKzqpSv8TSz5D", "price": 2400.0, "name": "Labelle Cap", "category": "Hats", "image": "https://acnhcdn.com/latest/ClosetIcon/CapHatKatecap1.png"};
                 addtocart(itemtoaddtocart, qubitproduct);
+                window["uv"].emit('ecBasketItemAction', {
+                    product: {
+                        productId: 'labellecap',
+                        sku: '7p2osKzqpSv8TSz5D'
+                    },
+                    action: 'add',
+                    quantity: 1
+                })
+                const cartTotalPrice = getCartTotal();
+                window["uv"].emit('ecBasketSummary', {
+                    basket: {
+                        subtotal: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        },
+                        total: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        },
+                        quantity: getCartNumberItems(),
+                        subtotalIncludingTax: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        }
+                    }
+                })
             })
         });
     </script>

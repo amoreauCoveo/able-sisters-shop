@@ -50,6 +50,24 @@
                     JSON.parse(qcart).forEach(item => {
                         window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
                     })
+                    const cartTotalPrice = getCartTotal();
+                    window["uv"].emit('ecBasketSummary', {
+                        basket: {
+                            subtotal: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            },
+                            total: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            },
+                            quantity: getCartNumberItems(),
+                            subtotalIncludingTax: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            }
+                        }
+                    })
                 }
             })
         </script>
@@ -145,6 +163,32 @@
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "EfqFMvapb35xaDsnk", "price": 770.0, "name": "OK Motors Cap", "category": "Hats", "image": "https://acnhcdn.com/latest/ClosetIcon/CapHatOkmotors0.png"};
                 addtocart(itemtoaddtocart, qubitproduct);
+                window["uv"].emit('ecBasketItemAction', {
+                    product: {
+                        productId: 'okmotorscap',
+                        sku: 'EfqFMvapb35xaDsnk'
+                    },
+                    action: 'add',
+                    quantity: 1
+                })
+                const cartTotalPrice = getCartTotal();
+                window["uv"].emit('ecBasketSummary', {
+                    basket: {
+                        subtotal: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        },
+                        total: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        },
+                        quantity: getCartNumberItems(),
+                        subtotalIncludingTax: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        }
+                    }
+                })
             })
         });
     </script>

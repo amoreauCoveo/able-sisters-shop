@@ -50,6 +50,24 @@
                     JSON.parse(qcart).forEach(item => {
                         window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
                     })
+                    const cartTotalPrice = getCartTotal();
+                    window["uv"].emit('ecBasketSummary', {
+                        basket: {
+                            subtotal: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            },
+                            total: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            },
+                            quantity: getCartNumberItems(),
+                            subtotalIncludingTax: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            }
+                        }
+                    })
                 }
             })
         </script>
@@ -145,6 +163,32 @@
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "hfcgP2if8TbvFFDdK", "price": 3010.0, "name": "Scholar's Hat", "category": "Hats", "image": "https://acnhcdn.com/latest/ClosetIcon/CapHatBachelor3.png"};
                 addtocart(itemtoaddtocart, qubitproduct);
+                window["uv"].emit('ecBasketItemAction', {
+                    product: {
+                        productId: 'scholar'shat',
+                        sku: 'hfcgP2if8TbvFFDdK'
+                    },
+                    action: 'add',
+                    quantity: 1
+                })
+                const cartTotalPrice = getCartTotal();
+                window["uv"].emit('ecBasketSummary', {
+                    basket: {
+                        subtotal: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        },
+                        total: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        },
+                        quantity: getCartNumberItems(),
+                        subtotalIncludingTax: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        }
+                    }
+                })
             })
         });
     </script>

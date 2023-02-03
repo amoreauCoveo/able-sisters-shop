@@ -50,6 +50,24 @@
                     JSON.parse(qcart).forEach(item => {
                         window["uv"].emit('ecBasketItem', returnFullBasketItem(item))   
                     })
+                    const cartTotalPrice = getCartTotal();
+                    window["uv"].emit('ecBasketSummary', {
+                        basket: {
+                            subtotal: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            },
+                            total: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            },
+                            quantity: getCartNumberItems(),
+                            subtotalIncludingTax: {
+                                value: cartTotalPrice,
+                                currency: 'CAD'
+                            }
+                        }
+                    })
                 }
             })
         </script>
@@ -145,6 +163,32 @@
             document.querySelector("#addToCartButton").addEventListener("click", function (){
                 const itemtoaddtocart = {"sku": "9JGbmWtDA3rmjf8Kc", "price": 560.0, "name": "Dog Nose", "category": "Accessories", "image": "https://acnhcdn.com/latest/ClosetIcon/AccessoryMouthDog2.png"};
                 addtocart(itemtoaddtocart, qubitproduct);
+                window["uv"].emit('ecBasketItemAction', {
+                    product: {
+                        productId: 'dognose',
+                        sku: '9JGbmWtDA3rmjf8Kc'
+                    },
+                    action: 'add',
+                    quantity: 1
+                })
+                const cartTotalPrice = getCartTotal();
+                window["uv"].emit('ecBasketSummary', {
+                    basket: {
+                        subtotal: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        },
+                        total: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        },
+                        quantity: getCartNumberItems(),
+                        subtotalIncludingTax: {
+                            value: cartTotalPrice,
+                            currency: 'CAD'
+                        }
+                    }
+                })
             })
         });
     </script>
