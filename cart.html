@@ -73,6 +73,45 @@
         itemDisplayContainer.appendChild(itemDisplayPrice);
         cartdisplay.appendChild(itemDisplayContainer);
       })
+
+      const buyButton = document.querySelector("#buyFromCart");
+      buyButton.addEventListener("click", function () {
+        const transactionid = getRandomId();
+        console.log("Buying", transactionid);
+        const qcart = localStorage.getItem("qcart");
+        if (qcart) {
+          JSON.parse(qcart).forEach(item => {
+            let basketItem = returnFullBasketItem(item);
+            basketItem["transaction"] = { id: transactionid};
+            basketItem.product.price["baseValue"] = basketItem.product.price["value"];
+            basketItem.product.price["baseCurrency"] = basketItem.product.price["currency"];
+            basketItem.product.originalPrice["baseValue"] = basketItem.product.originalPrice["value"]
+            window["uv"].emit('ecBasketItemTransaction', basketItem)
+          })
+          const cartTotalPrice = getCartTotal();
+          window["uv"].emit('ecBasketTransactionSummary', {
+            basket: {
+              subtotal: {
+                value: cartTotalPrice,
+                currency: 'CAD'
+              },
+              total: {
+                value: cartTotalPrice,
+                currency: 'CAD'
+              },
+              quantity: getCartNumberItems(),
+              subtotalIncludingTax: {
+                value: cartTotalPrice,
+                currency: 'CAD'
+              }
+            },
+            transaction: {
+              id: transactionid
+            }
+          })
+        }
+        buyfromcart();
+      })
     });
   </script>
   <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10095/css/CoveoFullSearch.min.css" />
@@ -128,7 +167,7 @@
   <h1>Cart</h1>
   <div id="cartlisting">
   </div>
-  <button class="buy-from-cart-button" onclick="buyfromcart()">Buy</button>
+  <button id="buyFromCart" class="buy-from-cart-button">Buy</button>
   <div id="recommendations" class="CoveoRecommendations" data-pipeline="AbleSistersCartRec">
     <div class="CoveoAnalytics" data-search-hub="ablesisters rec"></div>
     <div class="coveo-recommendation-body">
